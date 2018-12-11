@@ -20,11 +20,17 @@ public class BoardServiceClient {
 		
 		// 3. Lookup한 객체의 메소드 테스트
 		BoardVO vo = new BoardVO();
-		vo.setSeq(2);
+		//vo.setSeq(2);
 		vo.setTitle("임시 제목");
 		vo.setWriter("익명");
-		vo.setContent("임시 내용...............");
+		vo.setContent("임시 내용...............2");
 		boardService.insertBoard(vo);
+		
+		
+		vo.setSeq(1);
+		vo.setTitle("<<수정제목>>");
+		vo.setContent("<<수정내용..........>>");
+		boardService.updateBoard(vo);
 		
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		for (BoardVO board : boardList) {

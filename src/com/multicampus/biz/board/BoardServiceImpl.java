@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOSpring boardDAO;
 	
 	public void insertBoard(BoardVO vo) {
-		//System.out.println(4/0);
-		if(vo.getSeq() == 0) {
+//		System.out.println(4/0);	// Exception 발생용
+		/*if(vo.getSeq() == 0) {	// Exception 발생용
 			throw new IllegalArgumentException("0번 글은 등록 불가능");
-		}
+		}*/
 		boardDAO.insertBoard(vo);
 	}
 
