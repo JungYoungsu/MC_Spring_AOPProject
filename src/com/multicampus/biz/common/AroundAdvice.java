@@ -10,11 +10,12 @@ public class AroundAdvice {
 		// String shortstr = jp.getSignature().toShortString(); // 클래스명 메소드 정보
 		Object obj = null;
 		long start = System.currentTimeMillis();
+		System.out.println("AROUND::");
 		
 		obj = jp.proceed();
 		
 		long end = System.currentTimeMillis();
-		System.out.println(method + "() 메소드 실행에 걸린 시간 : " + 
+		System.out.println("AROUND::" + method + "() 메소드 실행에 걸린 시간 : " + 
 		(end - start) + "(ms)초");
 		return obj;
 	}
