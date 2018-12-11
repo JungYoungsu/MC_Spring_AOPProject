@@ -12,11 +12,6 @@ import com.multicampus.biz.common.JDBCUtil;
 // 2. DAO 클래스
 @Repository
 public class UserDAO {
-	// JDBC 관련 변수
-	private Connection conn = null;
-	private PreparedStatement stmt = null;
-	private ResultSet rs = null;
-	
 	// SQL 명령어들
 	private final String USER_GET = "select * from users where id=? and password=?";
 
@@ -40,6 +35,9 @@ public class UserDAO {
 	public UserVO getUser(UserVO vo) {
 		System.out.println("===> JDBC 기반으로 getUser() 기능 처리");
 		UserVO user = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(USER_GET);

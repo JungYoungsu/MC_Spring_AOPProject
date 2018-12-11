@@ -13,11 +13,6 @@ import com.multicampus.biz.common.JDBCUtil;
 // 2. DAO(Data Access Object) 클래스
 @Repository
 public class BoardDAO {
-	// JDBC 관련 변수
-	private Connection conn = null;
-	private PreparedStatement stmt = null;
-	private ResultSet rs = null;
-
 	// SQL 명령어들
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
@@ -29,6 +24,8 @@ public class BoardDAO {
 	// 글 등록
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 insertBoard() 기능 처리");
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_INSERT);
@@ -46,6 +43,8 @@ public class BoardDAO {
 	// 글 수정
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 updateBoard() 기능 처리");
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_UPDATE);
@@ -63,6 +62,8 @@ public class BoardDAO {
 	// 글 삭제
 	public void deleteBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 deleteBoard() 기능 처리");
+		Connection conn = null;
+		PreparedStatement stmt = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_DELETE);
@@ -79,6 +80,9 @@ public class BoardDAO {
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 getBoard() 기능 처리");
 		BoardVO board = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_GET);
@@ -105,6 +109,9 @@ public class BoardDAO {
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_LIST);
