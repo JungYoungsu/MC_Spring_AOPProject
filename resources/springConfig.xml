@@ -41,13 +41,15 @@
 	</aop:config>
 	
 	<!-- DataSource ?깅줉 -->
+	<context:property-placeholder location="classpath:database.properties"/>
+	
 	<bean id="dataSource" 
 	      class="org.apache.commons.dbcp.BasicDataSource" 
 	      destroy-method="close">
-		<property name="driverClassName" value="org.h2.Driver"></property>
-		<property name="url" value="jdbc:h2:tcp://localhost/~/test"></property>
-		<property name="username" value="sa"></property>
-		<property name="password" value=""></property>
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
 	</bean>
 	
 	<!-- JdbcTemplate ?깅줉 -->
