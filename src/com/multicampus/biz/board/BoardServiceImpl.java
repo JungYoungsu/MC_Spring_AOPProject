@@ -17,6 +17,7 @@ public class BoardServiceImpl implements BoardService {
 			throw new IllegalArgumentException("0번 글은 등록 불가능");
 		}*/
 		boardDAO.insertBoard(vo);
+		boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {
