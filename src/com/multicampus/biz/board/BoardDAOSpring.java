@@ -13,7 +13,7 @@ public class BoardDAOSpring {
 	private JdbcTemplate spring;
 	
 	// SQL 명령어들
-	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values(?,?,?,?)";
+	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET    = "select * from board where seq=?";
@@ -23,7 +23,7 @@ public class BoardDAOSpring {
 	// 글 등록
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> Spring 기반으로 insertBoard() 기능 처리");
-		Object[] args = {vo.getSeq(), vo.getTitle(), vo.getWriter(), vo.getContent()}; // 방법1. Object array
+		Object[] args = {vo.getTitle(), vo.getWriter(), vo.getContent()}; // 방법1. Object array
 		spring.update(BOARD_INSERT, args);
 		
 	}
