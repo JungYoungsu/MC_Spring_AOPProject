@@ -43,12 +43,13 @@ public class BoardDAOSpring {
 	// 글 상세 조회
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("===> Spring 기반으로 getBoard() 기능 처리");
-		return null;
+		Object[] args = {vo.getSeq()};
+		return spring.queryForObject(BOARD_GET, args, new BoardRowMapper());
 	}
 
 	// 글 목록 검색
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		System.out.println("===> Spring 기반으로 getBoardList() 기능 처리");
-		return null;
+		return spring.query(BOARD_LIST, new BoardRowMapper());
 	}
 }
